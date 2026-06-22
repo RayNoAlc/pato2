@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo Prova 2 — Saúde Coletiva I · Prof. André Terreri</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent1: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f0883e;
+    --accent4: #bc8cff;
+    --accent5: #ff7b72;
+    --cap1: #3fb950;
+    --cap2: #f0883e;
+    --cap3: #58a6ff;
+    --cap4: #bc8cff;
+    --cap5: #ff7b72;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero { background: linear-gradient(135deg, #0d1117 0%, #0d2137 50%, #0d1117 100%); border-bottom: 1px solid var(--border); text-align: center; padding: 60px 24px 48px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(63,185,80,.1) 0%, transparent 70%); }
+  .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 16px; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.15; position: relative; }
+  .hero h1 span { color: var(--accent2); }
+  .hero-sub { margin-top: 12px; color: var(--muted); font-size: 14px; position: relative; }
+  .chapters-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; position: relative; }
+  .chapters-nav a { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: all .2s; }
+  .chapters-nav a:hover { background: var(--surface); color: var(--text); border-color: var(--accent2); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+
+  /* ── CHAPTER BLOCK ── */
+  .chapter-block { margin-bottom: 64px; scroll-margin-top: 24px; }
+  .chapter-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .chapter-num { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; }
+  .chapter-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-family: 'DM Mono', monospace; font-weight: 500; color: var(--muted); margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--border); }
+
+  /* ── CARDS ── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .card-title { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .card-title::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+  .card p, .card li { color: #c9d1d9; font-size: 14px; }
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 3px; }
+
+  /* ── GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 640px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { background: var(--surface2); color: var(--accent2); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 14px; text-align: left; border: 1px solid var(--border); }
+  td { padding: 9px 14px; border: 1px solid var(--border); color: #c9d1d9; vertical-align: top; }
+  tr:nth-child(even) td { background: rgba(255,255,255,.025); }
+
+  /* ── TIP ── */
+  .tip { background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.3); border-left: 3px solid var(--accent2); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .tip strong { color: var(--accent2); }
+  .tip-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); margin-bottom: 5px; display: block; }
+
+  /* ── WARN ── */
+  .warn { background: rgba(240,136,62,.08); border: 1px solid rgba(240,136,62,.3); border-left: 3px solid var(--accent3); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .warn strong { color: var(--accent3); }
+  .warn-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: 5px; display: block; }
+
+  /* ── IMPORTANT ── */
+  .important { background: rgba(255,123,114,.08); border: 1px solid rgba(255,123,114,.3); border-left: 3px solid var(--accent5); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .important strong { color: var(--accent5); }
+
+  /* ── MACETE ── */
+  .macete { background: rgba(188,140,255,.08); border: 1px solid rgba(188,140,255,.3); border-left: 3px solid var(--accent4); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .macete strong { color: var(--accent4); }
+  .macete-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent4); margin-bottom: 5px; display: block; }
+
+  /* ── FLOW ── */
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .flow-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 13px; color: #fff; font-weight: 500; }
+  .flow-arrow { color: var(--muted); font-size: 16px; }
+
+  /* ── PILLS ── */
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .pill { padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .pill-blue { background: rgba(88,166,255,.15); color: var(--accent1); border: 1px solid rgba(88,166,255,.3); }
+  .pill-green { background: rgba(63,185,80,.15); color: var(--accent2); border: 1px solid rgba(63,185,80,.3); }
+  .pill-orange { background: rgba(240,136,62,.15); color: var(--accent3); border: 1px solid rgba(240,136,62,.3); }
+  .pill-purple { background: rgba(188,140,255,.15); color: var(--accent4); border: 1px solid rgba(188,140,255,.3); }
+  .pill-red { background: rgba(255,123,114,.15); color: var(--accent5); border: 1px solid rgba(255,123,114,.3); }
+
+  /* ── FLASH ── */
+  .flash { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-top: 24px; }
+  .flash-label { display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: 12px; }
+  .flash-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .flash-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 13px; color: #c9d1d9; }
+  .flash-item b { color: #fff; }
+
+  /* ── NUMBER BOX ── */
+  .num-box { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid rgba(88,166,255,.3); border-radius: 8px; padding: 8px 14px; margin: 4px; font-size: 13px; }
+  .num-val { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 800; color: var(--accent1); }
+
+  /* ── DIVIDER ── */
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-dot { position: absolute; left: -24px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent2); border: 2px solid var(--bg); flex-shrink: 0; }
+  .tl-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); letter-spacing: 1px; margin-bottom: 3px; }
+  .tl-desc { font-size: 14px; color: #c9d1d9; }
+  .tl-desc strong { color: #fff; }
+
+  /* ── LEVEL BOX ── */
+  .level-row { display: flex; gap: 0; margin-bottom: 8px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .level-num { width: 44px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+  .level-body { flex: 1; padding: 12px 14px; background: var(--surface); }
+  .level-name { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 4px; }
+  .level-desc { font-size: 13px; color: #c9d1d9; }
+  .level-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin-top: 5px; font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">S.C.I · Prof. Dr. André Terreri · Odontologia em Saúde Coletiva</div>
+  <h1>Resumo Completo<br><span>Prova 2</span></h1>
+  <div class="hero-sub">Educação em Saúde · Prevenção · Promoção · Biofilme · Brasil Sorridente · Equipe de Saúde Bucal</div>
+  <div class="chapters-nav">
+    <a href="#cap1">🦷 Brasil Sorridente</a>
+    <a href="#cap2">👥 Equipe de Saúde Bucal</a>
+    <a href="#cap3">📚 Educação em Saúde</a>
+    <a href="#cap4">🛡️ Níveis de Prevenção</a>
+    <a href="#cap5">🦠 Biofilme Dentário</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════ CAP 1 ══ -->
+<div id="cap1" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap1)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 01 · Aula 05</div>
+      <div class="chapter-title" style="color:var(--cap1)">Política Nacional de Saúde Bucal — Brasil Sorridente</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">O que é e por que foi criado?</div>
+    <div class="card">
+      <div class="card-title">Contexto anterior ao Brasil Sorridente</div>
+      <p>Antes da política, o modelo odontológico era <strong style="color:#fff">tardio e mutilador</strong>: atendimento apenas quando a dor já era insuportável, com extração como principal solução. Populações adultas e idosas praticamente não tinham acesso ao SUS odontológico.</p>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Objetivo central</div>
+      <p>Garantir ações de <strong style="color:#fff">promoção, prevenção, tratamento e recuperação</strong> da saúde bucal pelo SUS, reorganizando toda a rede — da atenção básica à especializada.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Contexto histórico</span>
+      O Brasil Sorridente foi lançado em <strong>2004</strong> como a primeira Política Nacional de Saúde Bucal do país. Reconheceu a saúde bucal como parte integrante da saúde geral e criou estrutura de rede para atendê-la em todos os níveis de complexidade.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Eixos principais da Política</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">1. Reorganização da Atenção Básica</div>
+        <p>Inserção das Equipes de Saúde Bucal (eSB) na Estratégia Saúde da Família. Foco em prevenção, promoção e resolução dos problemas mais prevalentes.</p>
+        <div class="pills"><span class="pill pill-green">ESF + eSB</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Ampliação da Atenção Especializada</div>
+        <p>Criação dos CEOs e LRPDs para cobrir a lacuna de especialidades que a atenção básica não resolve.</p>
+        <div class="pills"><span class="pill pill-blue">CEO + LRPD</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Fluoretação das Águas</div>
+        <p>Ampliação e vigilância da fluoretação como medida de proteção coletiva de maior custo-benefício. Concentração ideal: <strong style="color:#fff">0,45 a 0,94 ppm</strong> (varia conforme temperatura regional).</p>
+        <div class="pills"><span class="pill pill-orange">Lei 6.050/1974</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Vigilância Epidemiológica</div>
+        <p>Levantamentos periódicos das condições de saúde bucal (ex: SB Brasil) para orientar políticas e prioridades.</p>
+        <div class="pills"><span class="pill pill-purple">SB Brasil</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Componentes do Brasil Sorridente — Mapa completo</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Componente</th><th>O que é / faz</th><th>Detalhe importante</th></tr>
+        <tr>
+          <td><strong style="color:var(--accent2)">eSB — Equipe de Saúde Bucal</strong></td>
+          <td>Atenção primária dentro da ESF. Visitas domiciliares, prevenção e tratamento básico.</td>
+          <td>Modalidade I: CD + ASB. Modalidade II: CD + TSB + ASB.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--accent1)">CEO — Centro de Especialidades</strong></td>
+          <td>Atenção secundária. Referência e contrarreferência. 5 especialidades mínimas obrigatórias.</td>
+          <td>Acesso APENAS por encaminhamento da atenção básica. Nunca diretamente.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--accent3)">LRPD — Lab. de Prótese Dentária</strong></td>
+          <td>Produz próteses totais, parciais removíveis e fixas/adesivas para o SUS.</td>
+          <td>Financiamento por quantidade de próteses produzidas.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--accent4)">UOM — Unidade Odontológica Móvel</strong></td>
+          <td>Consultório odontológico completo em veículo adaptado. Atende áreas de difícil acesso.</td>
+          <td>Inclui cadeira, RX periapical, compressor e autoclave. Público-alvo: rurais, quilombolas, assentamentos.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--accent5)">SESB — Serviço de Especialidades</strong></td>
+          <td>Alternativa ao CEO para municípios pequenos (até 20 mil hab.) com boa cobertura de atenção básica.</td>
+          <td>Oferta especialidades sem precisar de um CEO completo.</td>
+        </tr>
+        <tr>
+          <td><strong style="color:#fff">CACON / UNACON</strong></td>
+          <td>Centros de alta complexidade oncológica. O Brasil Sorridente inclui atendimento odontológico nesses centros.</td>
+          <td>Pacientes oncológicos têm necessidades bucais específicas (mucosite, xerostomia, etc.).</td>
+        </tr>
+      </table>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha clássica — CEO</span>
+      O CEO <strong>não é porta de entrada</strong>. O paciente SEMPRE começa na atenção básica e é encaminhado ao CEO. A prova adora dizer que o paciente pode ir direto ao CEO — isso é <strong>ERRADO</strong>.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">CEO — As 5 Especialidades Mínimas Obrigatórias</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">1. Diagnóstico Bucal</div>
+        <p>Inclui obrigatoriamente o <strong style="color:#fff">diagnóstico de câncer de boca</strong> (estomatologia). Biópsias, lesões suspeitas, manifestações sistêmicas na cavidade oral.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Periodontia</div>
+        <p>Diagnóstico, prevenção e tratamento dos tecidos de suporte dos dentes. Raspagem, cirurgia periodontal e manutenção.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Cirurgia Oral Menor</div>
+        <p>Extrações simples, remoção de pequenas lesões e traumatismos. Geralmente sob anestesia local. <strong style="color:#fff">Não inclui cirurgias complexas</strong> (ex: implantes, enxertos ósseos).</p>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Endodontia</div>
+        <p>Tratamento de canal — preservação do dente tratando a polpa e tecidos perirradiculares. Objetivo: <strong style="color:#fff">evitar extração</strong>.</p>
+      </div>
+      <div class="card" style="grid-column:1/-1">
+        <div class="card-title">5. Atendimento a Pacientes com Necessidades Especiais (PNE)</div>
+        <p>Pacientes com alterações biopsicossociais que exigem atenção diferenciada. Inclui deficiências físicas, cognitivas, sensoriais, sistêmicas e transtornos de comportamento.</p>
+      </div>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Macete — 5 especialidades do CEO</span>
+      <strong>D-P-C-E-P</strong> = <strong>D</strong>iagnóstico bucal · <strong>P</strong>eriodontia · <strong>C</strong>irurgia oral menor · <strong>E</strong>ndodontia · <strong>P</strong>acientes com necessidades especiais.<br>
+      O CEO <em>pode</em> oferecer outras (ortodontia, implantodontia, odontopediatria, prótese), mas essas 5 são obrigatórias.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fluoretação da Água — Dados e Conceitos</div>
+    <div class="card">
+      <div class="card-title">Por que é considerada a melhor ação coletiva?</div>
+      <ul>
+        <li>Beneficia <strong style="color:#fff">toda a população</strong>, independentemente de renda ou comportamento individual</li>
+        <li>Custo-benefício: altíssimo impacto com baixíssimo custo por pessoa</li>
+        <li>Mecanismo: o flúor promove <strong style="color:#fff">remineralização do esmalte</strong> e inibe enzimas bacterianas</li>
+        <li>Base legal: <strong style="color:#fff">Lei 6.050/1974</strong> — obriga fluoretação em locais com SAA</li>
+      </ul>
+    </div>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <tr><th>Dado</th><th>Valor</th></tr>
+        <tr><td>Concentração ideal de flúor na água</td><td><strong style="color:var(--accent2)">0,45 a 0,94 ppm</strong> (variável conforme temperatura)</td></tr>
+        <tr><td>CPO-D aos 12 anos — 2003</td><td><strong style="color:var(--accent5)">2,78</strong></td></tr>
+        <tr><td>CPO-D aos 12 anos — 2010</td><td><strong style="color:var(--accent2)">2,07</strong> (meta OMS: &lt; 3,0)</td></tr>
+        <tr><td>Lei da fluoretação</td><td>Lei nº 6.050 / 1974</td></tr>
+      </table>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha — ppm</span>
+      A concentração de flúor <strong>não é fixa</strong>. Varia entre regiões porque temperaturas mais altas levam a maior consumo de água, o que poderia causar fluorose se a concentração fosse igual à de regiões frias. A prova pode apresentar um valor como 1,2 ppm — isso estaria acima do intervalo seguro!
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Cap. 1</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Brasil Sorridente</b> = 2004, 1ª política nacional de saúde bucal</span>
+      <span class="flash-item"><b>CEO</b> = atenção secundária, referência e contrarreferência</span>
+      <span class="flash-item"><b>CEO</b> = 5 especialidades mínimas obrigatórias (D-P-C-E-P)</span>
+      <span class="flash-item"><b>CEO</b> = nunca porta de entrada direta</span>
+      <span class="flash-item"><b>LRPD</b> = próteses totais, parciais removíveis e fixas</span>
+      <span class="flash-item"><b>UOM</b> = áreas rurais, quilombolas, assentamentos</span>
+      <span class="flash-item"><b>SESB</b> = municípios pequenos até 20 mil hab.</span>
+      <span class="flash-item"><b>Fluoretação</b> = Lei 6.050/1974</span>
+      <span class="flash-item"><b>Flúor ideal</b> = 0,45 a 0,94 ppm</span>
+      <span class="flash-item"><b>CPO-D 2010</b> = 2,07 (meta OMS &lt; 3,0 atingida)</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════ CAP 2 ══ -->
+<div id="cap2" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap2)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 02 · Aula 06</div>
+      <div class="chapter-title" style="color:var(--cap2)">Trabalho Multiprofissional e Equipe de Saúde Bucal</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Panorama da Odontologia no Brasil</div>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">Maior nº de CDs do mundo</div>
+        <p>O Brasil ultrapassou <strong style="color:#fff">400 mil cirurgiões-dentistas</strong> registrados no CFO — maior contingente do mundo.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Dependência do SUS</div>
+        <p>Aproximadamente <strong style="color:#fff">50% da população</strong> depende exclusivamente do SUS para acesso à saúde bucal.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Atuação pública</div>
+        <p>Apenas <strong style="color:#fff">~27% dos dentistas</strong> atuam em serviços públicos cadastrados no SCNES.</p>
+      </div>
+    </div>
+    <div class="important">
+      <strong>Paradoxo brasileiro:</strong> maior número de dentistas do mundo + 50% da população sem acesso à odontologia privada = necessidade urgente de fortalecer o SUS odontológico e redistribuir profissionais.
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Distribuição regional</span>
+      A média nacional é de <strong>1 dentista para ~489 habitantes</strong>, mas Norte e Nordeste apresentam cobertura privada muito menor. A concentração nos grandes centros urbanos é o principal problema de acesso.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Saúde Bucal na ESF — Princípios fundamentais</div>
+    <div class="card">
+      <div class="card-title">O que muda com a inserção na ESF?</div>
+      <p>O foco deixa de ser a <strong style="color:#fff">consulta isolada e curativa</strong> e passa a ser o <strong style="color:#fff">cuidado integral</strong>, envolvendo toda a equipe de forma integrada.</p>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Territorialização</div>
+        <p>A equipe mapeia o território, identifica áreas de risco e vulnerabilidade, e cadastra famílias sob sua responsabilidade.</p>
+        <div class="pills"><span class="pill pill-green">Área adscrita</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">População Adscrita</div>
+        <p>Conjunto de pessoas <strong style="color:#fff">oficialmente vinculadas</strong> à equipe de uma UBS. É a "clientela" definida geograficamente.</p>
+        <div class="pills"><span class="pill pill-blue">Vínculo territorial</span></div>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <tr><th>Princípio da atuação na ESF</th><th>Significado prático</th></tr>
+        <tr><td>Adscrição da população</td><td>Responsabilidade sobre território definido</td></tr>
+        <tr><td>Integralidade da assistência</td><td>Da promoção à reabilitação, sem fragmentação</td></tr>
+        <tr><td>Referência e contrarreferência</td><td>Encaminhamento organizado para outros níveis</td></tr>
+        <tr><td>Família como núcleo de cuidado</td><td>Abordagem centrada na família, não no indivíduo isolado</td></tr>
+        <tr><td>Humanização</td><td>Acolhimento, vínculo e respeito ao paciente</td></tr>
+        <tr><td>Atuação multiprofissional</td><td>CD, enfermeiro, médico, ACS trabalhando integrados</td></tr>
+        <tr><td>Educação permanente</td><td>Capacitação contínua baseada nos problemas do cotidiano</td></tr>
+        <tr><td>Participação social</td><td>Envolvimento da comunidade nas decisões</td></tr>
+        <tr><td>Avaliação contínua</td><td>Monitoramento constante dos resultados</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Educação Permanente × Educação Continuada</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent2)">Educação Permanente</div>
+        <p>Baseada nos <strong style="color:#fff">problemas reais do cotidiano de trabalho</strong>. Busca transformar as práticas profissionais a partir das necessidades identificadas no próprio serviço.</p>
+        <p style="margin-top:6px;font-size:13px;color:var(--muted)">Exemplo: usar a UNA-SUS para capacitar trabalhadores do SUS.</p>
+        <div class="pills"><span class="pill pill-green">Contextualizada</span><span class="pill pill-green">Transforma práticas</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent3)">Educação Continuada</div>
+        <p>Atualização técnica e científica do profissional, sem necessariamente partir dos problemas do serviço. Congressos, cursos e especializações.</p>
+        <div class="pills"><span class="pill pill-orange">Técnica</span><span class="pill pill-orange">Atualização</span></div>
+      </div>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha</span>
+      Prova adora confundir os dois. <strong>Educação permanente</strong> parte dos <strong>problemas do serviço</strong> e transforma práticas. <strong>Educação continuada</strong> é a atualização técnica tradicional (cursos, congressos). A ESF adota o modelo de <strong>educação permanente</strong>.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Técnico em Saúde Bucal (TSB) — Lei 11.889/2008</div>
+    <div class="card">
+      <div class="card-title">O que pode fazer (atribuições legais)</div>
+      <ul>
+        <li>Participar da capacitação de ASBs</li>
+        <li>Atuar em ações de <strong style="color:#fff">educação em saúde</strong></li>
+        <li>Participar de <strong style="color:#fff">levantamentos epidemiológicos</strong></li>
+        <li>Ensinar técnicas de higiene bucal</li>
+        <li>Aplicar flúor <strong style="color:#fff">sob orientação do CD</strong></li>
+        <li>Remover biofilme quando indicado</li>
+        <li>Realizar <strong style="color:#fff">radiografias odontológicas</strong></li>
+        <li>Inserir materiais restauradores (sob supervisão)</li>
+        <li>Realizar limpeza e antissepsia do campo operatório</li>
+        <li>Remover suturas</li>
+        <li>Realizar <strong style="color:#fff">isolamento absoluto</strong></li>
+        <li>Aplicar medidas de biossegurança</li>
+        <li>Instrumentar o CD em ambiente clínico e hospitalar</li>
+        <li>Supervisionar ASBs por delegação do CD</li>
+      </ul>
+    </div>
+    <div class="important" style="margin-top:10px">
+      <strong>O que o TSB NÃO pode fazer:</strong><br>
+      • Atuar de forma <strong>autônoma</strong> (sempre sob supervisão do CD)<br>
+      • Atender pacientes <strong>sem supervisão</strong> do cirurgião-dentista<br>
+      • Realizar procedimentos <strong>não autorizados em lei</strong><br>
+      • Fazer propaganda irregular dos seus serviços
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Evidência científica</span>
+      Estudos mostram que a <strong>retenção de selantes aplicados por TSB</strong> pode ser semelhante à obtida por CDs e graduandos — reforçando a importância do trabalho delegado e supervisionado para ampliar cobertura.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Auxiliar em Saúde Bucal (ASB) — Lei 11.889/2008</div>
+    <div class="card">
+      <div class="card-title">Principais funções do ASB</div>
+      <ul>
+        <li>Organizar atividades de higiene bucal</li>
+        <li>Processar filmes radiográficos</li>
+        <li>Preparar e acolher pacientes</li>
+        <li>Auxiliar e instrumentar procedimentos odontológicos</li>
+        <li>Manipular materiais odontológicos</li>
+        <li>Selecionar moldeiras e confeccionar modelos em gesso</li>
+        <li>Realizar limpeza, assepsia, desinfecção e esterilização de materiais</li>
+        <li>Aplicar medidas de biossegurança</li>
+        <li>Participar de ações de promoção e prevenção em saúde</li>
+        <li>Auxiliar em levantamentos das necessidades de saúde bucal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">TSB × ASB — Comparativo rápido</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Aspecto</th><th style="color:var(--accent2)">TSB</th><th style="color:var(--accent1)">ASB</th></tr>
+        <tr><td>Base legal</td><td>Lei 11.889/2008</td><td>Lei 11.889/2008</td></tr>
+        <tr><td>Realiza radiografias?</td><td><strong style="color:var(--accent2)">Sim</strong></td><td>Apenas processa filmes</td></tr>
+        <tr><td>Insere materiais restauradores?</td><td><strong style="color:var(--accent2)">Sim (sob supervisão)</strong></td><td>Não</td></tr>
+        <tr><td>Realiza isolamento absoluto?</td><td><strong style="color:var(--accent2)">Sim</strong></td><td>Não</td></tr>
+        <tr><td>Supervisiona outro profissional?</td><td><strong style="color:var(--accent2)">Sim — supervisiona ASB</strong></td><td>Não</td></tr>
+        <tr><td>Remove suturas?</td><td><strong style="color:var(--accent2)">Sim</strong></td><td>Não</td></tr>
+        <tr><td>Aplica flúor?</td><td><strong style="color:var(--accent2)">Sim (sob orientação do CD)</strong></td><td>Não</td></tr>
+        <tr><td>Confecciona modelos em gesso?</td><td>Sim</td><td><strong style="color:var(--accent1)">Sim</strong></td></tr>
+        <tr><td>Esteriliza materiais?</td><td>Sim</td><td><strong style="color:var(--accent1)">Sim</strong></td></tr>
+      </table>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Macete</span>
+      <strong>TSB = mais complexo</strong>: faz o que o ASB faz + procedimentos clínicos sob supervisão (radiografia, inserção de materiais, isolamento, remoção de sutura, supervisão do ASB).<br>
+      <strong>ASB = apoio clínico e administrativo</strong>: prepara, organiza, instrumenta, esteriliza — mas não realiza procedimentos clínicos.
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Ambos NÃO podem atuar sem supervisão do CD</span>
+      A autonomia profissional não existe para TSB nem ASB. Toda atuação é <strong>delegada e supervisionada</strong> pelo cirurgião-dentista, conforme a Lei 11.889/2008.
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Cap. 2</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Brasil</b> = +400 mil CDs — maior do mundo</span>
+      <span class="flash-item"><b>50%</b> da população depende do SUS para odontologia</span>
+      <span class="flash-item"><b>~27%</b> dos CDs atuam em serviços públicos</span>
+      <span class="flash-item"><b>1 CD para ~489 hab.</b> (média nacional)</span>
+      <span class="flash-item"><b>TSB + ASB</b> = Lei 11.889/2008</span>
+      <span class="flash-item"><b>TSB</b> = faz radiografia, insere material, remove sutura</span>
+      <span class="flash-item"><b>TSB</b> = supervisiona ASB por delegação</span>
+      <span class="flash-item"><b>ASB</b> = instrumenta, esteriliza, processa filme</span>
+      <span class="flash-item"><b>Ambos</b> = sempre sob supervisão do CD</span>
+      <span class="flash-item"><b>Ed. Permanente</b> = parte do cotidiano do serviço</span>
+      <span class="flash-item"><b>Ed. Continuada</b> = cursos e congressos</span>
+      <span class="flash-item"><b>CEO</b> = D-P-C-E-P (5 especialidades)</span>
+      <span class="flash-item"><b>ESF</b> = territorialização + população adscrita</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════ CAP 3 ══ -->
+<div id="cap3" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap3)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 03 · Aula 07</div>
+      <div class="chapter-title" style="color:var(--cap3)">Educação em Saúde, Promoção e Prevenção</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">O que é Educação em Saúde?</div>
+    <div class="card">
+      <div class="card-title">Definição ampliada</div>
+      <p>Educação em saúde <strong style="color:#fff">não é apenas transmitir informações</strong>. É um processo que visa <strong style="color:#fff">modificar comportamentos por meio do aprendizado ativo</strong>, respeitando os conhecimentos prévios, a cultura e a realidade social do paciente.</p>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent1)">Saber Técnico</div>
+        <p>Baseado em evidências científicas.</p>
+        <p style="margin-top:6px;font-size:13px;color:var(--muted)">Ex.: o fio dental remove biofilme interproximal.</p>
+        <div class="pills"><span class="pill pill-blue">Evidência</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent3)">Saber Popular</div>
+        <p>Baseado na experiência cotidiana do paciente.</p>
+        <p style="margin-top:6px;font-size:13px;color:var(--muted)">Ex.: o fio dental tira resto de comida.</p>
+        <div class="pills"><span class="pill pill-orange">Experiência</span></div>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Como usar na prática</span>
+      O profissional <strong>não deve impor</strong> o saber técnico. Deve <strong>construir junto</strong> com o paciente, partindo do que ele já sabe. O diálogo entre saber técnico e saber popular é a base da educação em saúde efetiva.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Os 3 Níveis da Aprendizagem (cai em prova!)</div>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent1)">🧠 Cognitivo</div>
+        <p>Relacionado ao <strong style="color:#fff">conhecimento</strong>. Explicar a doença, discutir o exame clínico, mostrar placa, sangramento, lesões. Tirar dúvidas.</p>
+        <div class="pills"><span class="pill pill-blue">Saber</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent3)">❤️ Afetivo</div>
+        <p>Relacionado à <strong style="color:#fff">confiança e vínculo</strong>. O profissional demonstra interesse, empatia, acolhimento e preocupação genuína.</p>
+        <div class="pills"><span class="pill pill-orange">Sentir</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent2)">🖐️ Psicomotor</div>
+        <p>Relacionado à <strong style="color:#fff">execução de habilidades</strong>. Treinamento de escovação, uso do fio dental, higiene da boca do bebê.</p>
+        <div class="pills"><span class="pill pill-green">Fazer</span></div>
+      </div>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Macete</span>
+      <strong>C-A-P</strong> = <strong>C</strong>ognitivo (saber) · <strong>A</strong>fetivo (sentir) · <strong>P</strong>sicomotor (fazer).<br>
+      Ou lembre assim: para mudar um hábito, o paciente precisa <strong>saber</strong> (cognitivo), <strong>querer</strong> (afetivo) e <strong>conseguir fazer</strong> (psicomotor).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Sistemas Representacionais na Educação em Saúde</div>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">👁️ Visual</div>
+        <p>Mostrar lesões no espelho, usar macromodelos, cartazes e slides.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">👃 Olfativo</div>
+        <p>Demonstrar halitose para conscientizar sobre a relação com higiene bucal.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🤚 Cinestésico</div>
+        <p>Fazer o paciente perceber sensações (dor, sangramento, desconforto) para estimular mudança de hábitos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recursos Educativos e Roteiro Ideal</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Recursos para facilitar aprendizado</div>
+        <ul>
+          <li>Linguagem simples e adequada à idade</li>
+          <li>Macromodelos dentários</li>
+          <li>Espelhos (mostrar ao paciente)</li>
+          <li>Cartazes e slides</li>
+          <li>Demonstrações práticas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Roteiro ideal da consulta educativa</div>
+        <ul>
+          <li>Saúde bucal normal</li>
+          <li>Doenças bucais presentes</li>
+          <li>Causas das doenças</li>
+          <li>Consequências se não tratadas</li>
+          <li>Fatores de risco individuais</li>
+          <li>Formas de prevenção disponíveis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Promoção da Saúde — Carta de Ottawa (1986)</div>
+    <div class="card">
+      <div class="card-title">Definição (Carta de Ottawa)</div>
+      <p>Promoção da saúde consiste em <strong style="color:#fff">capacitar indivíduos e comunidades</strong> para melhorar sua qualidade de vida e <strong style="color:#fff">controlar os determinantes da própria saúde</strong>.</p>
+    </div>
+    <div class="warn" style="margin-top:10px">
+      <span class="warn-label">⚠️ Promoção ≠ Prevenção — distinção fundamental</span>
+      <strong>Prevenção</strong> = evitar doenças específicas (ex: flúor para evitar cárie).<br>
+      <strong>Promoção</strong> = criar condições gerais favoráveis à saúde, agindo sobre determinantes amplos (ex: políticas públicas, habitação, educação). Promoção é mais abrangente e anterior à prevenção.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Os 5 Campos de Ação da Carta de Ottawa (CUIDADO: todos caem!)</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent1)"></div>
+        <div class="tl-year">Campo 1</div>
+        <div class="tl-desc"><strong>Políticas Públicas Saudáveis</strong> — legislação, regulamentação e incentivos fiscais que protegem a saúde (ex: imposto sobre cigarro, regulação de alimentos).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent2)"></div>
+        <div class="tl-year">Campo 2</div>
+        <div class="tl-desc"><strong>Ambientes Favoráveis à Saúde</strong> — locais de trabalho, escolas e ambientes físicos que promovam saúde (ex: áreas de lazer, saneamento básico).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent3)"></div>
+        <div class="tl-year">Campo 3</div>
+        <div class="tl-desc"><strong>Fortalecimento da Ação Comunitária</strong> — empoderar comunidades para participar das decisões sobre saúde. ESF e controle social são exemplos.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent4)"></div>
+        <div class="tl-year">Campo 4</div>
+        <div class="tl-desc"><strong>Desenvolvimento das Habilidades Pessoais</strong> — educação em saúde, informação e habilidades para que indivíduos façam escolhas saudáveis.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent5)"></div>
+        <div class="tl-year">Campo 5</div>
+        <div class="tl-desc"><strong>Reorientação dos Serviços de Saúde</strong> — saúde além do modelo biomédico/curativo. Serviços devem incorporar promoção e prevenção.</div>
+      </div>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Macete — 5 campos de Ottawa</span>
+      <strong>P-A-F-D-R</strong> = <strong>P</strong>olíticas públicas · <strong>A</strong>mbientes favoráveis · <strong>F</strong>ortalecimento comunitário · <strong>D</strong>esenvolvimento pessoal · <strong>R</strong>eorientação dos serviços.<br>
+      Ou: <em>"Políticas e Ambientes Favorecem Decisões Responsáveis"</em>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Determinantes da Saúde — Controle Individual</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent2)">Sob controle individual</div>
+        <ul>
+          <li>Hábitos e comportamentos</li>
+          <li>Alimentação</li>
+          <li>Atividade física</li>
+          <li>Utilização dos serviços de saúde</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent5)">Fora do controle individual</div>
+        <ul>
+          <li>Políticas públicas</li>
+          <li>Ambiente urbano</li>
+          <li>Segurança pública</li>
+          <li>Condições socioeconômicas</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px">Por isso a promoção da saúde exige ação intersetorial — não só do setor saúde.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Política Nacional de Promoção da Saúde — Prioridades</div>
+    <div class="card">
+      <div class="card-title">7 Prioridades da PNPS</div>
+      <ul>
+        <li>Alimentação saudável</li>
+        <li>Atividade física</li>
+        <li>Controle do tabagismo</li>
+        <li>Redução do uso abusivo de álcool e drogas</li>
+        <li>Segurança no trânsito</li>
+        <li>Cultura de paz e combate às discriminações</li>
+        <li>Desenvolvimento sustentável</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Cap. 3</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Educação em saúde</b> ≠ só transmitir informação</span>
+      <span class="flash-item"><b>Saber técnico</b> = evidência; <b>saber popular</b> = experiência</span>
+      <span class="flash-item"><b>C-A-P</b> = Cognitivo · Afetivo · Psicomotor</span>
+      <span class="flash-item"><b>Cognitivo</b> = saber; <b>Afetivo</b> = sentir; <b>Psicomotor</b> = fazer</span>
+      <span class="flash-item"><b>Ottawa 1986</b> = 5 campos (P-A-F-D-R)</span>
+      <span class="flash-item"><b>Promoção</b> ≠ Prevenção (promoção é mais ampla)</span>
+      <span class="flash-item"><b>Promoção</b> = agir nos determinantes da saúde</span>
+      <span class="flash-item"><b>Visual / Olfativo / Cinestésico</b> = sistemas representacionais</span>
+      <span class="flash-item"><b>PNPS</b> = 7 prioridades (tabaco, álcool, trânsito, etc.)</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════ CAP 4 ══ -->
+<div id="cap4" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap4)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 04 · Aula 08</div>
+      <div class="chapter-title" style="color:var(--cap4)">Níveis de Prevenção e História Natural das Doenças</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Modelo Biomédico e a Medicina Preventiva</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent5)">Modelo Biomédico (Flexner)</div>
+        <ul>
+          <li>Foco na <strong style="color:#fff">doença</strong>, não na saúde</li>
+          <li>Visão <strong style="color:#fff">individual</strong> e fragmentada</li>
+          <li>Hospital como centro de referência</li>
+          <li>Pouca importância ao contexto social</li>
+          <li>Epidemiologia ignorada</li>
+        </ul>
+        <div class="pills"><span class="pill pill-red">Modelo dominante séc. XX</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent2)">Medicina Preventiva</div>
+        <ul>
+          <li>Surgiu como crítica ao modelo biomédico</li>
+          <li>Valoriza a <strong style="color:#fff">prevenção</strong> antes da doença</li>
+          <li>Usa a <strong style="color:#fff">epidemiologia</strong> para planejar ações</li>
+          <li>Base do modelo de Leavell e Clark</li>
+        </ul>
+        <div class="pills"><span class="pill pill-green">Evolução do modelo</span></div>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Relatório Lalonde (1974)</span>
+      Mostrou que a maior parte dos problemas de saúde depende do <strong>estilo de vida</strong>, do <strong>ambiente</strong> e de <strong>fatores sociais</strong> — e não apenas dos serviços médicos. Foi um divisor de águas para a promoção da saúde.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">História Natural da Doença (HND)</div>
+    <div class="card">
+      <div class="card-title">O que é?</div>
+      <p>A HND é a evolução da doença <strong style="color:#fff">desde antes do seu aparecimento</strong> (período pré-patogênico) até seu desfecho final: cura, cronificação, incapacidade ou morte.</p>
+    </div>
+    <div class="flow" style="margin-top:12px">
+      <div class="flow-step">Pré-patogênese<br><small style="color:var(--muted);font-weight:400">Antes da doença</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Patogênese precoce<br><small style="color:var(--muted);font-weight:400">Início da doença</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Doença avançada<br><small style="color:var(--muted);font-weight:400">Sinais e sintomas</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Desfecho<br><small style="color:var(--muted);font-weight:400">Cura / sequela / morte</small></div>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent2)">Período Pré-patogênico</div>
+        <p>O hospedeiro ainda está saudável, mas já existe <strong style="color:#fff">interação entre agente, hospedeiro e ambiente</strong>. A doença ainda não se manifestou.</p>
+        <p style="font-size:13px;margin-top:6px;color:var(--muted)">Ex: bactérias já presentes na boca antes da cavidade aparecer.</p>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent5)">Período Patogênico</div>
+        <p>A doença já está instalada. Vai do início das alterações celulares até os sinais e sintomas. Pode resultar em cura, cronificação ou morte.</p>
+        <p style="font-size:13px;margin-top:6px;color:var(--muted)">Ex: cavidade dentária em progressão.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Modelo de Leavell e Clark — Os 5 Níveis de Prevenção</div>
+    <div style="margin-bottom:10px">
+      <!-- Nível 1 -->
+      <div class="level-row">
+        <div class="level-num" style="background:rgba(63,185,80,0.15);color:var(--accent2)">1</div>
+        <div class="level-body">
+          <div class="level-name">Promoção da Saúde</div>
+          <div class="level-desc">Atuação <strong style="color:#fff">inespecífica</strong> — melhora as condições gerais de vida sem visar uma doença específica.</div>
+          <div class="level-desc" style="margin-top:4px">Ex.: educação em saúde, moradia adequada, lazer, alimentação saudável, saneamento básico, esporte.</div>
+          <span class="level-tag" style="background:rgba(63,185,80,0.15);color:var(--accent2);border:1px solid rgba(63,185,80,0.3)">PREVENÇÃO PRIMÁRIA · PRÉ-PATOGÊNESE</span>
+        </div>
+      </div>
+      <!-- Nível 2 -->
+      <div class="level-row" style="margin-top:8px">
+        <div class="level-num" style="background:rgba(91,156,246,0.15);color:var(--accent1)">2</div>
+        <div class="level-body">
+          <div class="level-name">Proteção Específica</div>
+          <div class="level-desc">Atua contra <strong style="color:#fff">doenças determinadas</strong> — alvo específico.</div>
+          <div class="level-desc" style="margin-top:4px">Ex.: vacinação, fluoretação da água, dentifrício fluoretado, selantes, flúor gel, profilaxia, iodação do sal.</div>
+          <span class="level-tag" style="background:rgba(91,156,246,0.15);color:var(--accent1);border:1px solid rgba(91,156,246,0.3)">PREVENÇÃO PRIMÁRIA · PRÉ-PATOGÊNESE</span>
+        </div>
+      </div>
+      <!-- Nível 3 -->
+      <div class="level-row" style="margin-top:8px">
+        <div class="level-num" style="background:rgba(240,136,62,0.15);color:var(--accent3)">3</div>
+        <div class="level-body">
+          <div class="level-name">Diagnóstico Precoce e Tratamento Imediato</div>
+          <div class="level-desc">Identificar a doença <strong style="color:#fff">o mais cedo possível</strong> para impedir evolução.</div>
+          <div class="level-desc" style="margin-top:4px">Ex.: rastreamento, exames periódicos, tratamento inicial da cárie incipiente, diagnóstico de lesões suspeitas.</div>
+          <span class="level-tag" style="background:rgba(240,136,62,0.15);color:var(--accent3);border:1px solid rgba(240,136,62,0.3)">PREVENÇÃO SECUNDÁRIA · PATOGÊNESE PRECOCE</span>
+        </div>
+      </div>
+      <!-- Nível 4 -->
+      <div class="level-row" style="margin-top:8px">
+        <div class="level-num" style="background:rgba(188,140,255,0.15);color:var(--accent4)">4</div>
+        <div class="level-body">
+          <div class="level-name">Limitação do Dano</div>
+          <div class="level-desc">Evitar <strong style="color:#fff">agravamentos e sequelas</strong> quando a doença já está instalada.</div>
+          <div class="level-desc" style="margin-top:4px">Ex.: tratamento periodontal para evitar perda dentária, controle rigoroso do diabetes, tratamento endodôntico para evitar extração.</div>
+          <span class="level-tag" style="background:rgba(188,140,255,0.15);color:var(--accent4);border:1px solid rgba(188,140,255,0.3)">PREVENÇÃO SECUNDÁRIA · DOENÇA AVANÇADA</span>
+        </div>
+      </div>
+      <!-- Nível 5 -->
+      <div class="level-row" style="margin-top:8px">
+        <div class="level-num" style="background:rgba(255,123,114,0.15);color:var(--accent5)">5</div>
+        <div class="level-body">
+          <div class="level-name">Reabilitação</div>
+          <div class="level-desc">Restaurar <strong style="color:#fff">função</strong> e <strong style="color:#fff">reintegrar</strong> o paciente à vida social e laboral.</div>
+          <div class="level-desc" style="margin-top:4px">Ex.: próteses totais e parciais, implantes, fisioterapia, reabilitação oral completa.</div>
+          <span class="level-tag" style="background:rgba(255,123,114,0.15);color:var(--accent5);border:1px solid rgba(255,123,114,0.3)">PREVENÇÃO TERCIÁRIA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:14px">
+      <table>
+        <tr><th>Nível</th><th>Nome</th><th>Prevenção</th><th>Período da HND</th><th>Exemplo odonto</th></tr>
+        <tr><td><strong style="color:var(--accent2)">1</strong></td><td>Promoção da saúde</td><td><strong style="color:var(--accent2)">Primária</strong></td><td>Pré-patogênese</td><td>Educação em saúde bucal</td></tr>
+        <tr><td><strong style="color:var(--accent1)">2</strong></td><td>Proteção específica</td><td><strong style="color:var(--accent2)">Primária</strong></td><td>Pré-patogênese</td><td>Flúor, selantes, profilaxia</td></tr>
+        <tr><td><strong style="color:var(--accent3)">3</strong></td><td>Diagnóstico precoce</td><td><strong style="color:var(--accent3)">Secundária</strong></td><td>Patogênese precoce</td><td>Diagnóstico de cárie inicial</td></tr>
+        <tr><td><strong style="color:var(--accent4)">4</strong></td><td>Limitação do dano</td><td><strong style="color:var(--accent3)">Secundária</strong></td><td>Doença avançada</td><td>Terapia periodontal</td></tr>
+        <tr><td><strong style="color:var(--accent5)">5</strong></td><td>Reabilitação</td><td><strong style="color:var(--accent5)">Terciária</strong></td><td>Sequela / pós-doença</td><td>Próteses, implantes</td></tr>
+      </table>
+    </div>
+
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha clássica — Nível 1 × 2</span>
+      <strong>Nível 1 (Promoção)</strong> = inespecífico — não mira uma doença. Ex: educação, moradia, lazer.<br>
+      <strong>Nível 2 (Proteção específica)</strong> = mira uma doença específica. Ex: flúor (protege contra cárie).<br>
+      A prova adora classificar "fluoretação da água" como Nível 1. <strong>Errado!</strong> Fluoretação é Nível 2.
+    </div>
+    <div class="warn" style="margin-top:8px">
+      <span class="warn-label">⚠️ Pegadinha — Nível 3 × 4</span>
+      <strong>Nível 3</strong> = diagnóstico precoce (doença ainda incipiente, evitar progressão).<br>
+      <strong>Nível 4</strong> = doença já avançada, objetivo é evitar perda maior (sequela).<br>
+      Ex: tratamento periodontal para evitar perda dentária = <strong>Nível 4</strong>, não 3.
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Cap. 4</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>HND</b> = pré-patogênese → patogênese → desfecho</span>
+      <span class="flash-item"><b>Leavell e Clark</b> = 5 níveis de prevenção</span>
+      <span class="flash-item"><b>Níveis 1+2</b> = Prevenção Primária (pré-patogênese)</span>
+      <span class="flash-item"><b>Nível 1</b> = promoção — inespecífico</span>
+      <span class="flash-item"><b>Nível 2</b> = proteção específica (flúor, selante, vacina)</span>
+      <span class="flash-item"><b>Níveis 3+4</b> = Prevenção Secundária</span>
+      <span class="flash-item"><b>Nível 3</b> = diagnóstico precoce</span>
+      <span class="flash-item"><b>Nível 4</b> = limitação do dano (evita sequela)</span>
+      <span class="flash-item"><b>Nível 5</b> = reabilitação — Prevenção Terciária</span>
+      <span class="flash-item"><b>Fluoretação</b> = Nível 2 (não confundir com Nível 1!)</span>
+      <span class="flash-item"><b>Lalonde 1974</b> = estilo de vida + ambiente + social</span>
+      <span class="flash-item"><b>Flexner</b> = modelo biomédico</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════ CAP 5 ══ -->
+<div id="cap5" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap5)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 05 · Aula 09</div>
+      <div class="chapter-title" style="color:var(--cap5)">Biofilme Dentário e Cárie</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">O que é Biofilme?</div>
+    <div class="card">
+      <div class="card-title">Definição</div>
+      <p>Biofilme é uma <strong style="color:#fff">comunidade organizada de microrganismos</strong> aderidos entre si e a uma superfície, envoltos por uma <strong style="color:#fff">matriz extracelular polimérica</strong> produzida pelos próprios microrganismos.</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)">Não é simplesmente uma "camada de bactérias". É uma estrutura organizada, com canais, gradientes de pH e resistência muito superior à de bactérias planctônicas (livres).</p>
+    </div>
+    <div class="grid3" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Onde pode existir?</div>
+        <ul>
+          <li>Dentes</li>
+          <li>Tecidos moles orais</li>
+          <li>Mangueiras e tubulações</li>
+          <li>Equipamentos odontológicos</li>
+          <li>Qualquer superfície com líquido</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Vantagens para bactérias</div>
+        <ul>
+          <li>Proteção contra antimicrobianos</li>
+          <li>Maior resistência geral</li>
+          <li>Circulação de água e nutrientes</li>
+          <li>Maior sobrevivência</li>
+          <li>Cooperação metabólica</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Composição estrutural</div>
+        <ul>
+          <li>Bactérias</li>
+          <li>Matriz de polissacarídeos <strong style="color:#fff">(≈75% do volume)</strong></li>
+          <li>Água</li>
+          <li>Proteínas e glicoproteínas</li>
+          <li>Lipídios</li>
+          <li>Íons: Ca²⁺, Na⁺, K⁺, PO₄³⁻, F⁻</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Película Adquirida — Base para o Biofilme</div>
+    <div class="card">
+      <div class="card-title">O que é a Película Adquirida?</div>
+      <p>É uma fina camada orgânica que se forma na superfície do esmalte <strong style="color:#fff">antes do biofilme</strong>, proveniente principalmente da saliva. <strong style="color:#fff">Não é removida pela escovação comum.</strong></p>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Composição principal</div>
+        <ul>
+          <li>Mucinas salivares</li>
+          <li>Glicoproteínas salivares</li>
+          <li>IgA secretória</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Funções da película</div>
+        <ul>
+          <li>Lubrificar a cavidade oral</li>
+          <li>Proteger contra abrasão</li>
+          <li>Reduzir a erosão ácida</li>
+          <li>Proteger contra cárie (barreira)</li>
+          <li><strong style="color:#fff">Selecionar colonizadores iniciais</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha — Película e Biofilme</span>
+      A película é <strong>protetora</strong>. O biofilme maduro é que causa dano. A prova pode confundir ou perguntar se a película causa cárie — <strong>não causa</strong>. Ela é pré-requisito para o biofilme se formar, mas tem função protetora em si mesma.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Formação do Biofilme — Etapas</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent1)"></div>
+        <div class="tl-year">Etapa 1 — Formação da Película Adquirida</div>
+        <div class="tl-desc">Glicoproteínas salivares, mucinas e IgA se depositam sobre o esmalte em <strong>minutos</strong> após a profilaxia.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent2)"></div>
+        <div class="tl-year">Etapa 2 — Colonização Inicial (Pioneiros)</div>
+        <div class="tl-desc">Bactérias se aderem à película via fímbrias (pili), adesinas e pontes de cálcio. Colonizadores: <strong>S. salivarius, S. oralis, S. mitis, S. sanguinis, S. gordonii, Actinomyces spp.</strong></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent3)"></div>
+        <div class="tl-year">Etapa 3 — Multiplicação e Coagregação</div>
+        <div class="tl-desc">Bactérias se multiplicam e coagregam formando microcolônias. Produção de <strong>glucanos via glicosiltransferases</strong> (GTFs) — estrutura da matriz.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent4)"></div>
+        <div class="tl-year">Etapa 4 — Colonização Secundária e Maturação</div>
+        <div class="tl-desc">Diminuição do oxigênio interno (ambiente anaeróbio), maior produção de matriz extracelular, chegada de colonizadores secundários (incluindo mais <strong>S. mutans</strong> com dieta rica em sacarose).</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--accent5)"></div>
+        <div class="tl-year">Etapa 5 — Biofilme Maduro e Cariogênico</div>
+        <div class="tl-desc">Com dieta rica em sacarose, S. mutans e lactobacilos dominam, produzindo ácido lático, reduzindo o pH e causando desmineralização.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Colonizadores Iniciais × S. mutans</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Característica</th><th style="color:var(--accent2)">Colonizadores Pioneiros</th><th style="color:var(--accent5)">S. mutans / S. sobrinus</th></tr>
+        <tr><td>Quando predominam?</td><td>Desde o início da colonização</td><td>Aumentam com dieta rica em sacarose</td></tr>
+        <tr><td>Proporção inicial</td><td>Maioria do biofilme</td><td><strong style="color:#fff">Pequena proporção inicial</strong></td></tr>
+        <tr><td>Tolerância ao ácido?</td><td>Moderada</td><td><strong style="color:#fff">Alta (acidúrico e acidogênico)</strong></td></tr>
+        <tr><td>Produz glucanos?</td><td>Parcialmente</td><td><strong style="color:#fff">Sim — via GTFs (glicosiltransferases)</strong></td></tr>
+        <tr><td>Papel na cárie</td><td>Menor</td><td><strong style="color:var(--accent5)">Principal agente cariogênico</strong></td></tr>
+      </table>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Pegadinha — S. mutans no início</span>
+      O S. mutans <strong>não predomina</strong> no biofilme inicial. Representa pequena proporção. Sua proporção <strong>aumenta com a sacarose</strong>. A prova pode dizer que ele é o colonizador pioneiro — <strong>ERRADO!</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Biofilme e Cárie — Mecanismo</div>
+    <div class="card">
+      <div class="card-title">Como a cárie acontece?</div>
+      <ul>
+        <li>Sacarose entra no biofilme</li>
+        <li>S. mutans e outros fermentam a sacarose → <strong style="color:#fff">produção de ácido lático</strong></li>
+        <li>pH cai abaixo de 5,5 → <strong style="color:#fff">desmineralização do esmalte</strong></li>
+        <li>Exposição repetida = pH não recupera → lesão progride</li>
+        <li>S. mutans e lactobacilos são acidúricos → <strong style="color:#fff">continuam produzindo ácido mesmo em pH baixo</strong></li>
+      </ul>
+    </div>
+    <div class="flow" style="margin-top:12px">
+      <div class="flow-step">Sacarose</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Fermentação</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Ácido lático</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">pH &lt; 5,5</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Desmineralização</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Cárie</div>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Macete — S. mutans</span>
+      S. mutans é <strong>acidogênico</strong> (produz ácido) e <strong>acidúrico</strong> (sobrevive no ácido). Isso o torna duplamente perigoso: cria o ambiente e ainda prospera nele. Lactobacilos têm papel similar na progressão da lesão já instalada.
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Por que o flúor ajuda?</span>
+      O flúor presente na composição do biofilme (íon F⁻) inibe enzimas bacterianas, dificulta a produção de ácido e favorece a <strong>remineralização</strong> do esmalte parcialmente desmineralizado — por isso ele atua como proteção específica (Nível 2 de Leavell e Clark).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Mecanismos de Adesão ao Esmalte</div>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">Fímbrias / Pili</div>
+        <p>Estruturas proteicas que fazem a ancoragem inicial das bactérias à película adquirida.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Adesinas</div>
+        <p>Proteínas de superfície bacteriana que se ligam especificamente a receptores da glicoproteína salivar.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Pontes de Cálcio</div>
+        <p>Íons Ca²⁺ medeiam a ligação entre bactérias carregadas negativamente e a superfície do esmalte.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Cap. 5</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Biofilme</b> = comunidade organizada + matriz extracelular</span>
+      <span class="flash-item"><b>Matriz</b> ≈ 75% do volume do biofilme</span>
+      <span class="flash-item"><b>Película adquirida</b> = mucinas + glicoproteínas + IgA</span>
+      <span class="flash-item"><b>Película</b> = protetora, não removida pela escovação</span>
+      <span class="flash-item"><b>Colonizadores pioneiros</b> = S. salivarius, S. oralis, Actinomyces</span>
+      <span class="flash-item"><b>S. mutans</b> = pequena proporção inicial, cresce com sacarose</span>
+      <span class="flash-item"><b>S. mutans</b> = acidogênico + acidúrico</span>
+      <span class="flash-item"><b>GTFs</b> = glicosiltransferases — produzem glucanos (matriz)</span>
+      <span class="flash-item"><b>Cárie</b> = sacarose → ácido lático → pH &lt; 5,5 → desmineralização</span>
+      <span class="flash-item"><b>Lactobacilos</b> = progressão da lesão já instalada</span>
+      <span class="flash-item"><b>Flúor</b> = remineralização + inibe enzimas bacterianas</span>
+      <span class="flash-item"><b>Adesão</b> = fímbrias + adesinas + pontes de cálcio</span>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding: 48px 0 32px; color:var(--muted); font-size:12px; font-family:'DM Mono',monospace; letter-spacing:1px; border-top:1px solid var(--border); margin-top:40px;">
+  SAÚDE COLETIVA I · PROF. DR. ANDRÉ TERRERI · ODONTOLOGIA · BOA PROVA! 🦷
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
