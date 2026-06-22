@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo Patologia — Neoplasias, CEC, Câncer Bucal, Doenças Autoimunes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent1: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f0883e;
+    --accent4: #bc8cff;
+    --accent5: #ff7b72;
+    --cap1: #3fb950;
+    --cap2: #f0883e;
+    --cap3: #58a6ff;
+    --cap4: #bc8cff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+
+  .hero { background: linear-gradient(135deg, #0d1117 0%, #1a0d2e 50%, #0d1117 100%); border-bottom: 1px solid var(--border); text-align: center; padding: 60px 24px 48px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(188,140,255,.1) 0%, transparent 70%); }
+  .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent4); margin-bottom: 16px; position: relative; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.15; position: relative; }
+  .hero h1 span { color: var(--accent4); }
+  .hero-sub { margin-top: 12px; color: var(--muted); font-size: 14px; position: relative; }
+  .chapters-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; position: relative; }
+  .chapters-nav a { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: all .2s; }
+  .chapters-nav a:hover { background: var(--surface); color: var(--text); border-color: var(--accent4); }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 24px; }
+
+  .chapter-block { margin-bottom: 64px; scroll-margin-top: 24px; }
+  .chapter-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .chapter-num { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; }
+  .chapter-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-family: 'DM Mono', monospace; font-weight: 500; color: var(--muted); margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--border); }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .card-title { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .card-title::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent4); flex-shrink: 0; }
+  .card p, .card li { color: #c9d1d9; font-size: 14px; }
+  .card ul { padding-left: 18px; }
+  .card ul li { margin-bottom: 3px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 640px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { background: var(--surface2); color: var(--accent4); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 14px; text-align: left; border: 1px solid var(--border); }
+  td { padding: 9px 14px; border: 1px solid var(--border); color: #c9d1d9; vertical-align: top; }
+  tr:nth-child(even) td { background: rgba(255,255,255,.025); }
+
+  .tip { background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.3); border-left: 3px solid var(--accent2); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .tip strong { color: var(--accent2); }
+  .tip-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); margin-bottom: 5px; display: block; }
+
+  .warn { background: rgba(240,136,62,.08); border: 1px solid rgba(240,136,62,.3); border-left: 3px solid var(--accent3); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .warn strong { color: var(--accent3); }
+  .warn-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: 5px; display: block; }
+
+  .important { background: rgba(255,123,114,.08); border: 1px solid rgba(255,123,114,.3); border-left: 3px solid var(--accent5); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .important strong { color: var(--accent5); }
+
+  .macete { background: rgba(188,140,255,.08); border: 1px solid rgba(188,140,255,.3); border-left: 3px solid var(--accent4); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; font-size: 13.5px; color: #c9d1d9; }
+  .macete strong { color: var(--accent4); }
+  .macete-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent4); margin-bottom: 5px; display: block; }
+
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .flow-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 13px; color: #fff; font-weight: 500; }
+  .flow-arrow { color: var(--muted); font-size: 16px; }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .pill { padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .pill-blue { background: rgba(88,166,255,.15); color: var(--accent1); border: 1px solid rgba(88,166,255,.3); }
+  .pill-green { background: rgba(63,185,80,.15); color: var(--accent2); border: 1px solid rgba(63,185,80,.3); }
+  .pill-orange { background: rgba(240,136,62,.15); color: var(--accent3); border: 1px solid rgba(240,136,62,.3); }
+  .pill-purple { background: rgba(188,140,255,.15); color: var(--accent4); border: 1px solid rgba(188,140,255,.3); }
+  .pill-red { background: rgba(255,123,114,.15); color: var(--accent5); border: 1px solid rgba(255,123,114,.3); }
+
+  .flash { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-top: 24px; }
+  .flash-label { display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: 12px; }
+  .flash-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .flash-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 13px; color: #c9d1d9; }
+  .flash-item b { color: #fff; }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Patologia Oral · Odontologia</div>
+  <h1>Resumo Completo<br><span>Patologia</span></h1>
+  <div class="hero-sub">Neoplasias · CEC · Câncer Bucal · Doenças Autoimunes</div>
+  <div class="chapters-nav">
+    <a href="#cap1">🧬 Neoplasias</a>
+    <a href="#cap2">🔬 CEC e Condições Cancerizáveis</a>
+    <a href="#cap3">🦷 Câncer Bucal</a>
+    <a href="#cap4">🛡️ Doenças Autoimunes</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════ CAP 1 — NEOPLASIAS ══ -->
+<div id="cap1" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap1)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 01</div>
+      <div class="chapter-title" style="color:var(--cap1)">Neoplasias — Conceitos Gerais</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Definições Essenciais</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Neoplasia</div>
+        <p>Crescimento novo. Distúrbio do crescimento celular desencadeado por alterações adquiridas no DNA. <strong style="color:#fff">Tumor</strong> é sinônimo popular (tecnicamente = apenas aumento de volume).</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Câncer</div>
+        <p>Denominação exclusiva para tumores <strong style="color:#fff">malignos</strong>. Nome vem da capacidade de invadir tecidos como um caranguejo se adere a superfícies. Oncologia = estudo das neoplasias.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Componentes do Tumor</div>
+      <p><strong style="color:#fff">Parênquima</strong> (células neoplásicas — define o comportamento biológico e dá nome ao tumor) + <strong style="color:#fff">Estroma</strong> (tecido conjuntivo e vasos sanguíneos — crucial para o desenvolvimento).</p>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Características do Câncer</span>
+      O acúmulo de mutações gera: autossuficiência no crescimento · ausência de resposta a sinais inibitórios · evasão da apoptose · replicação ilimitada · angiogênese · invasão local e metástase · reprogramação metabólica · escape do sistema imune.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Nomenclatura — Sufixos</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Sufixo</th><th>Tipo</th><th>Origem</th></tr>
+        <tr><td><strong style="color:var(--accent2)">-OMA</strong></td><td>Benigno</td><td>Qualquer origem</td></tr>
+        <tr><td><strong style="color:var(--accent5)">CARCINOMA</strong></td><td>Maligno</td><td>Epitelial</td></tr>
+        <tr><td><strong style="color:var(--accent5)">SARCOMA</strong></td><td>Maligno</td><td>Mesenquimal</td></tr>
+        <tr><td><strong style="color:var(--accent5)">BLASTOMA</strong></td><td>Maligno</td><td>Reproduz características embrionárias</td></tr>
+      </table>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Exceções Malignas que terminam em -OMA</span>
+      <strong>Melanoma · Linfoma · Mieloma</strong> — terminam em -oma mas são MALIGNOS!
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tabela de Origem → Benigno / Maligno</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Origem</th><th style="color:var(--accent2)">Benigno</th><th style="color:var(--accent5)">Maligno</th></tr>
+        <tr><td>Epitélio de revestimento</td><td>Papiloma</td><td>Carcinoma</td></tr>
+        <tr><td>Epitélio glandular</td><td>Adenoma</td><td>Adenocarcinoma</td></tr>
+        <tr><td>Fibroblasto</td><td>Fibroma</td><td>Fibrossarcoma</td></tr>
+        <tr><td>Tecido adiposo</td><td>Lipoma</td><td>Lipossarcoma</td></tr>
+        <tr><td>Osso</td><td>Osteoma</td><td>Osteossarcoma</td></tr>
+        <tr><td>Cartilagem</td><td>Condroma</td><td>Condrossarcoma</td></tr>
+        <tr><td>Vasos sanguíneos</td><td>Hemangioma</td><td>Hemangiossarcoma</td></tr>
+        <tr><td>Músculo liso</td><td>Leiomioma</td><td>Leiomiossarcoma</td></tr>
+        <tr><td>Músculo estriado</td><td>Rabdomioma</td><td>Rabdomiossarcoma</td></tr>
+        <tr><td>Melanócitos</td><td>Nevo</td><td>Melanoma</td></tr>
+        <tr><td>Células multi/totipotentes</td><td>Teratoma</td><td>Teratoma maligno</td></tr>
+        <tr><td>Células do sangue</td><td>—</td><td>Leucemia</td></tr>
+        <tr><td>Órgãos linfoides</td><td>—</td><td>Linfoma</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Displasia e Anaplasia</div>
+    <div class="card">
+      <div class="card-title">Displasia</div>
+      <p>Alterações citológicas pré-cancerosas causadas por agente carcinogênico. Há perda da arquitetura epitelial e da uniformidade celular. Células basais sofrem hiperplasia com maturação desorganizada nas camadas superiores.</p>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Displasia ≠ Câncer</span>
+      Displasias leves e moderadas que não envolvem toda a espessura do epitélio podem <strong>regredir completamente</strong>.
+    </div>
+    <div class="flow" style="margin-top:12px">
+      <div class="flow-step">Displasia Leve</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Displasia Moderada</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Ca in situ (MB íntegra)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Carcinoma Invasor (MB rompida)</div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Anaplasia</div>
+      <p>Reversão da célula à forma mais primitiva e indiferenciada. Tumor anaplásico = mais indiferenciado possível. <strong style="color:#fff">Quanto mais depressa crescer e mais anaplásico for, menor a probabilidade de ter atividade funcional especializada.</strong></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Benigno × Maligno</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Característica</th><th style="color:var(--accent2)">Benigno</th><th style="color:var(--accent5)">Maligno</th></tr>
+        <tr><td>Diferenciação</td><td>Bem diferenciado</td><td>De bem a indiferenciado</td></tr>
+        <tr><td>Anaplasia</td><td>Não</td><td>Sim</td></tr>
+        <tr><td>Ritmo de crescimento</td><td>Lento</td><td>Rápido</td></tr>
+        <tr><td>Invasão local</td><td>Não</td><td>Sim</td></tr>
+        <tr><td>Cápsula</td><td>Sim</td><td>Não</td></tr>
+        <tr><td>Metástases</td><td>Não</td><td>Sim</td></tr>
+        <tr><td>Mitoses atípicas</td><td>Não</td><td>Sim</td></tr>
+        <tr><td>Pleomorfismo celular</td><td>Não</td><td>Sim</td></tr>
+      </table>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Características Citológicas do Maligno</span>
+      Pleomorfismo celular · núcleo hipercromático (hematoxilina tem afinidade pelo material genético) · relação núcleo/citoplasma aumentada · aumento de número e tamanho de nucléolos · mitoses atípicas · células invadindo TC.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Estadiamento TNM</div>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title">T — Tamanho</div>
+        <p>T1 a T4. T4 invade estruturas adjacentes.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">N — Nódulos</div>
+        <p>N0 a N3. Linfonodos regionais comprometidos.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">M — Metástase</div>
+        <p>M0 (sem) ou M1 (com metástase à distância).</p>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Linfonodos e PET Scan</span>
+      Linfonodos normais: pequenos, móveis, não palpáveis. Metastáticos: grandes, duros, fixos. PET scan: paciente ingere glicose-contraste; acúmulo em regiões distantes indica tumor.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Genética do Câncer</div>
+    <div class="important">
+      <strong>Regra fundamental:</strong> Uma única mutação NÃO causa câncer. A malignização ocorre por acúmulo de <strong>10 ou mais mutações</strong>. Todos os tumores são monoclonais — originam-se de uma única célula mutada.
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Agentes Carcinogênicos</div>
+      <ul>
+        <li><strong style="color:#fff">Físicos:</strong> radiação solar, radiação ionizante</li>
+        <li><strong style="color:#fff">Químicos:</strong> álcool, agrotóxicos, substâncias ocupacionais (pintores, manicures), nitritos</li>
+        <li><strong style="color:#fff">Biológicos (vírus oncogênicos):</strong> HPV, HBV, HCV, HIV, HTLV1, EBV</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Carcinogênese — 2 Fases</div>
+      <div class="flow">
+        <div class="flow-step">Iniciação</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">célula exposta ao carcinógeno, sofre mutação</div>
+        <div class="flow-arrow">|</div>
+        <div class="flow-step">Promoção</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">proliferação das células transformadas</div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:18px">Genes Relacionados ao Câncer</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Gene</th><th>Normal</th><th style="color:var(--accent5)">No Câncer</th></tr>
+        <tr><td><strong style="color:#fff">Protooncogenes</strong></td><td>Estimulam proliferação celular</td><td>Mutados → oncogenes. Superexpressos (ex: múltiplos receptores para o mesmo fator de crescimento). Ex: HER2/NEU no câncer de mama.</td></tr>
+        <tr><td><strong style="color:#fff">Genes supressores tumorais</strong> (P53, Rb)</td><td>Inibem o crescimento. P53 = freio no ponto G1 → manda para reparo ou apoptose. Rb foi o primeiro descrito.</td><td>Mutados e inoperantes</td></tr>
+        <tr><td><strong style="color:#fff">Genes do reparo</strong></td><td>Consertam erros no DNA</td><td>Não reparam</td></tr>
+        <tr><td><strong style="color:#fff">Genes da apoptose</strong></td><td>Induzem morte celular programada</td><td>Não funcionam</td></tr>
+        <tr><td><strong style="color:#fff">Genes da telomerase</strong></td><td>Inativos — telômero encurta a cada divisão → senescência</td><td>Superexpressos → células imortais</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Metástase — Cascata de Invasão</div>
+    <div class="flow">
+      <div class="flow-step">Afrouxamento (E-caderinas alteradas)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Degradação MB (colagenase IV)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Circulação (NK destrói a maioria)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Adesão a plaquetas / trombos</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Novo foco metastático</div>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Vias de Disseminação</div>
+        <ul>
+          <li><strong style="color:#fff">Carcinomas:</strong> preferencialmente via linfática</li>
+          <li><strong style="color:#fff">Sarcomas:</strong> preferencialmente via hematogênica</li>
+          <li><strong style="color:#fff">Semeadura em cavidades:</strong> ex. carcinoma de ovário → peritônio</li>
+          <li>Pacientes com câncer: maior risco de trombose</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Tropismo Orgânico</div>
+        <p>Determinado por: moléculas de adesão específicas das células tumorais · quimiotáticos liberados pelo órgão-alvo · condições favoráveis à proliferação no órgão-alvo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Linfomas</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Linfoma de Hodgkin</div>
+        <p>Adolescentes e adultos jovens. Aumento de linfonodo cervical. Boca quase nunca afetada. Histologia: <strong style="color:#fff">células de Reed-Sternberg binucleadas — "olhos de coruja"</strong>.</p>
+        <div class="pills"><span class="pill pill-purple">Jovens</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Linfoma Não Hodgkin</div>
+        <p>Adultos. Origem em linfócitos B. Intraoral: aumento de volume mole, indolor, pode ser ulcerado e reabsorver osso. Diagnóstico: biópsia por PAAF. Histologia: hipercromatismo, pleomorfismo, mitoses atípicas.</p>
+        <div class="pills"><span class="pill pill-blue">Adultos · B</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Linfomas em Cavidade Oral</div>
+      <p>Tipo extranodal. Tumefações fibrosas e difusas, superfície ulcerada, acomete fundo de sulco, gengiva e palato. Raro na boca, exceto quando associado a HIV. Tipo mais comum: células B. Fatores de risco: imunodeficiência, HIV, artrite reumatoide, obesidade, imunossupressores.</p>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Classificação do Linfoma</span>
+      Para classificar o tipo usa-se <strong>imuno-histoquímica</strong> — morfologicamente é difícil diferenciar infiltrado crônico de linfoma.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Leucemias</div>
+    <div class="card">
+      <div class="card-title">Definição e Tipos</div>
+      <p>Neoplasias malignas derivadas de células hematopoiéticas, iniciando na medula óssea com superprodução de leucócitos, suprimindo produção de hemácias e plaquetas.</p>
+      <div class="pills" style="margin-top:8px">
+        <span class="pill pill-green">LLA → crianças</span>
+        <span class="pill pill-green">LMA → crianças</span>
+        <span class="pill pill-blue">LLC → adultos</span>
+        <span class="pill pill-purple">LMC → adultos</span>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 LMC — Cromossomo Philadelphia</span>
+      Leucemia Mielocítica Crônica tem característica única: translocação entre cromossomos <strong>9 e 12 → Cromossomo Philadelphia</strong>.
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Clínico e Manifestações Orais</div>
+      <ul>
+        <li>Anemia e fadiga (↓ hemácias → déficit de O₂)</li>
+        <li>Sangramento (falta de plaquetas)</li>
+        <li>Febre (depleção de neutrófilos)</li>
+        <li><strong style="color:#fff">Manifestações orais:</strong> petéquias, úlceras, hiperplasia gengival, sangramento gengival</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Metástases Orais e Melanoma</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Metástases Orais</div>
+        <ul>
+          <li>Raras. Mandíbula em <strong style="color:#fff">80% dos casos</strong></li>
+          <li>Gengiva, língua e intraósseo</li>
+          <li>Radiografia: aspecto <strong style="color:#fff">"roído por traça"</strong></li>
+          <li>Sítios primários mais comuns: <strong style="color:#fff">mama e pulmão</strong></li>
+          <li>Predileção: área de pré-molares e molares, leve predileção em mulheres</li>
+          <li>Sinais: tumefação, dor, parestesia</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Melanoma Oral</div>
+        <ul>
+          <li>Origem em melanócitos. Fator principal: radiação UV</li>
+          <li>Adultos brancos, 50-55 anos. Critérios <strong style="color:#fff">ABCDE</strong></li>
+          <li>Menos de 1% de todos os melanomas, mas mais agressivo que o cutâneo</li>
+          <li>4 em 5 casos: <strong style="color:#fff">palato duro ou mucosa alveolar da maxila</strong></li>
+          <li>Lesão inicial: mácula marrom a negra com bordas irregulares</li>
+          <li>Menos de 20% sobrevivem 5 anos</li>
+          <li>Melanomas não pigmentados (&lt;2%): pior prognóstico</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Neoplasias</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Neoplasia</b> = crescimento novo com alteração genética</span>
+      <span class="flash-item"><b>Câncer</b> = somente malignos</span>
+      <span class="flash-item"><b>Parênquima</b> = células neoplásicas (dá o nome)</span>
+      <span class="flash-item"><b>-oma</b> = benigno · exceto melanoma, linfoma, mieloma</span>
+      <span class="flash-item"><b>Carcinoma</b> = maligno epitelial</span>
+      <span class="flash-item"><b>Sarcoma</b> = maligno mesenquimal</span>
+      <span class="flash-item"><b>Displasia</b> ≠ câncer (pode regredir)</span>
+      <span class="flash-item"><b>Ca in situ</b> = MB íntegra → curável</span>
+      <span class="flash-item"><b>10+ mutações</b> = malignização</span>
+      <span class="flash-item"><b>P53</b> = gene supressor mais comum no câncer</span>
+      <span class="flash-item"><b>Telomerase</b> superexpressa = células imortais</span>
+      <span class="flash-item"><b>Carcinomas</b> = via linfática · Sarcomas = via sanguínea</span>
+      <span class="flash-item"><b>Reed-Sternberg</b> = olhos de coruja = Hodgkin</span>
+      <span class="flash-item"><b>Cromossomo Philadelphia</b> = LMC</span>
+      <span class="flash-item"><b>Metástase oral</b> = mandíbula 80% · mama e pulmão</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════ CAP 2 — CEC ══ -->
+<div id="cap2" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap2)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 02</div>
+      <div class="chapter-title" style="color:var(--cap2)">CEC e Condições Potencialmente Cancerizáveis</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Visão Geral das Condições</div>
+    <div class="card">
+      <div class="card-title">Principais Condições</div>
+      <p>Há pelo menos 10 condições potencialmente cancerizáveis. As principais são <strong style="color:#fff">leucoplasia, eritroplasia e queilite actínica</strong>. Líquen plano e algumas síndromes são menos frequentes.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Leucoplasia</div>
+    <div class="card">
+      <div class="card-title">Definição e Epidemiologia</div>
+      <p>Mancha ou placa branca não removível e que não pode ser caracterizada clínica ou patologicamente como outra doença — <strong style="color:#fff">diagnóstico por exclusão</strong>. Lesão pré-maligna oral mais comum (85% dos casos). Potencial de transformação maligna de 4%. Apenas 5-25% exibem displasia ou CEC.</p>
+      <div class="pills" style="margin-top:8px">
+        <span class="pill pill-orange">70% homens adultos</span>
+        <span class="pill pill-orange">8% dos homens acima de 70 anos</span>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Etiologia</span>
+      Tabaco (&gt;80% dos portadores são fumantes) · álcool · radiação UV · microrganismos (Cândida/HPV 16 e 18) · trauma (estomatite nicotínica, queratose friccional).
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Fatores de Pior Prognóstico</span>
+      Aparece em <strong>assoalho, mulheres, não fumantes ou área &gt;2cm²</strong> → pior prognóstico.
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Homogênea</div>
+        <p>Plana, uniforme em toda extensão. Menor risco.</p>
+        <div class="pills"><span class="pill pill-green">Menor risco</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Não Homogênea</div>
+        <p>Áreas espessas, ulceradas ou avermelhadas. Subtipos: fina/branda, espessa, granular/nodular, verrucosa.</p>
+        <div class="pills"><span class="pill pill-red">Pior prognóstico</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Locais de Risco e Histopatologia</div>
+      <p><strong style="color:#fff">70%</strong> no vermelhão labial, mucosa jugal e gengiva. Lesões em língua, vermelhão e assoalho representam <strong style="color:#fff">90%</strong> das que mostram displasia ou carcinoma.</p>
+      <p style="margin-top:8px">Histopatologia: hiperqueratose (orto ou para) · acantose · infiltrado inflamatório crônico no TC · projeções papilares/puntiformes (verrucosa) · displasia leve/moderada/severa · carcinoma in situ e raramente CEC.</p>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Tratamento</div>
+      <ul>
+        <li>Biópsia fundamental + cessação do agente causal</li>
+        <li>Sem displasia ou displasia leve: remoção opcional</li>
+        <li>Displasia moderada/grave: remoção cirúrgica</li>
+        <li>Pior prognóstico para recidiva/malignização: sexo feminino, não fumante, assoalho e ventre de língua</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Leucoplasia Verrucosa Proliferativa</div>
+    <div class="card">
+      <div class="card-title">Subtipo Especial — Alta Agressividade</div>
+      <ul>
+        <li>Aparece na gengiva, espalha para palato e mucosa jugal</li>
+        <li>Mais comum em <strong style="color:#fff">mulheres &gt;50 anos, não fumantes</strong></li>
+        <li>Resistente ao tratamento e recidivante</li>
+        <li>Semelhante ao carcinoma verrucoso, mas evolui para CEC</li>
+        <li>Biópsia e acompanhamento frequente obrigatórios</li>
+      </ul>
+      <div class="pills" style="margin-top:8px"><span class="pill pill-red">Sempre biopsiar</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Eritroplasia</div>
+    <div class="important">
+      <strong>90% das eritroplasias são displasias graves, carcinoma in situ ou CEC</strong> — potencial de malignização muito maior que leucoplasia!
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Clínico e Tratamento</div>
+      <ul>
+        <li>Lesão vermelha, definição análoga à leucoplasia. Causa desconhecida, menos comum</li>
+        <li><strong style="color:#fff">Eritroleucoplasia</strong> = áreas vermelhas + esbranquiçadas → biopsiar a área vermelha</li>
+        <li>Clínico: idosos, assoalho, língua, palato mole — máculas eritematosas bem definidas, assintomáticas</li>
+        <li>DD: candidose, mucosite, lesões vasculares</li>
+        <li>Histologia: atrofia epitelial com infiltrado inflamatório crônico</li>
+        <li>Tratamento: remoção cirúrgica total; recorrência exige acompanhamento</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Estomatite Nicotínica</div>
+    <div class="warn">
+      <span class="warn-label">⚠️ NÃO é condição cancerizável!</span>
+      É uma <strong>resposta ao calor</strong>, não aos químicos do tabaco. Não é considerada pré-maligna. <strong>Reversível em 1-2 semanas</strong> após cessação do hábito.
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">"Palato do Fumante" — Clínico</div>
+      <p>Mais associada ao cachimbo. Mucosa esbranquiçada com pontos avermelhados (orifícios inflamados das glândulas salivares menores), superfície corrugada, dentes pigmentados. Serve como indicativo de tabagismo, mas sem potencial pré-maligno.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Queilite Actínica</div>
+    <div class="card">
+      <div class="card-title">Definição e Clínico</div>
+      <p>Alteração pré-maligna difusa do vermelhão labial por <strong style="color:#fff">exposição solar excessiva</strong>. Adultos de pele clara, homens, áreas atróficas eritematosas no lábio inferior. Perda da delimitação entre pele, semimucosa (vermelhão) e mucosa é característica. Descamação, estrias transversais.</p>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Úlcera &gt;15 dias = HD de Queilite Actínica</span>
+      Ulceração que não cicatriza há mais de 15 dias → <strong>biópsia obrigatória</strong>. Desenvolve CEC em <strong>6-10% dos casos</strong>.
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Histopatologia e Tratamento</div>
+      <p>Ulceração · atrofia epitelial · displasia epitelial variada · elastose solar · infiltrado inflamatório crônico leve.</p>
+      <p style="margin-top:6px">Tratamento: protetor solar labial + biópsia + acompanhamento clínico.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">CEC — Complementos</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Apresentação</div>
+        <ul>
+          <li><strong style="color:#fff">Endofítica:</strong> cresce para dentro</li>
+          <li><strong style="color:#fff">Exofítica:</strong> cresce para fora</li>
+          <li>Lesão infiltrada = dá pra individualizar a massa ao apertar com os dedos, indicando extensão além do epitélio</li>
+          <li>CEC em não fumantes: raro, mais em mulheres jovens, língua, mutação em genes supressores tumorais</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">CEC Associado a Implantes</div>
+        <ul>
+          <li>Suspeitar em pacientes com histórico de câncer bucal</li>
+          <li>Ulcerações que não cicatrizam</li>
+          <li>Fratura patológica adjacente ao implante</li>
+          <li>Irritação gengival refratária ao tratamento</li>
+          <li>Área de radiolucidez ou lesão esbranquiçada próxima → <strong style="color:#fff">biopsiar</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Tratamento e Histologia</div>
+      <p><strong style="color:#fff">Tratamento:</strong> guiado pelo estágio clínico. Excisão cirúrgica ampla, radioterapia ou combinação. Quimioterapia não é eficaz isoladamente, usada como complementar.</p>
+      <p style="margin-top:6px"><strong style="color:#fff">Histologia:</strong> pleomorfismo celular · mitoses (incluindo atípicas) · nucléolos · células epiteliais invadindo TC · grau de queratinização · estágio/tipo de invasão · infiltrado linfoplasmocitário.</p>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — CEC e Condições Cancerizáveis</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Leucoplasia</b> = lesão pré-maligna mais comum (85%)</span>
+      <span class="flash-item"><b>Leucoplasia</b> = diagnóstico por exclusão</span>
+      <span class="flash-item"><b>Transformação maligna</b> leucoplasia = 4%</span>
+      <span class="flash-item"><b>Eritroplasia</b> = 90% displasia grave / Ca in situ / CEC</span>
+      <span class="flash-item"><b>Eritroleucoplasia</b> = biopsiar a área vermelha</span>
+      <span class="flash-item"><b>Estomatite nicotínica</b> = NÃO é cancerizável</span>
+      <span class="flash-item"><b>Estomatite nicotínica</b> = resposta ao calor, reversível</span>
+      <span class="flash-item"><b>Queilite actínica</b> = sol + lábio + pré-maligna</span>
+      <span class="flash-item"><b>Úlcera &gt;15 dias no lábio</b> = biopsiar</span>
+      <span class="flash-item"><b>CEC em 6-10%</b> dos casos de queilite actínica</span>
+      <span class="flash-item"><b>Pior prognóstico leucoplasia</b> = assoalho, mulher, não fumante</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════ CAP 3 — CÂNCER BUCAL ══ -->
+<div id="cap3" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap3)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 03</div>
+      <div class="chapter-title" style="color:var(--cap3)">Câncer Bucal</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Conceitos e Incidência</div>
+    <div class="card">
+      <div class="card-title">O que é o Câncer Bucal?</div>
+      <p>Qualquer célula da boca pode sofrer mutação e originar um câncer. O <strong style="color:#fff">epitélio de revestimento (epitélio + tecido conjuntivo)</strong> pode dar origem ao Carcinoma Espinocelular (CEC). Apesar de existirem vários tipos de câncer bucal, cerca de <strong style="color:#fff">90% dos casos correspondem ao CEC</strong> — chamado assim porque tem origem nas células da camada espinhosa. Por isso, quando se fala em "câncer bucal", na maioria das vezes está se referindo ao CEC.</p>
+    </div>
+    <div class="grid3" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Mortalidade</div>
+        <p><strong style="color:var(--accent5)">Metade</strong> de quem tem câncer bucal morre. 50% detectados em estágio avançado (T3 ou T4).</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Incidência Global</div>
+        <p>1º lugar: Índia. 6º lugar: Brasil (INCA). Brasil = maior incidência de CEC na América Latina. Sul e Sudeste: maior mortalidade.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Ranking por Sexo</div>
+        <p>6º mais comum em homens. 8º em mulheres. &lt;10% são neoplasias de glândulas salivares menores.</p>
+      </div>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠️ Sinal Clínico Clássico</span>
+      <strong>Úlcera que não cicatriza + bordas elevadas/endurecidas + centro necrótico + geralmente indolor no início.</strong> Aproximadamente 28,5% dos pacientes não sabem ou relatam incorretamente que o sinal inicial é a úlcera indolor.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Etiologia e Fatores de Risco</div>
+    <div class="card">
+      <div class="card-title">Visão Geral</div>
+      <p>Causa multifatorial. 90% das causas são ambientais e evitáveis. Hereditariedade não desempenha papel etiológico importante.</p>
+    </div>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <tr><th>Fator</th><th>Mecanismo</th></tr>
+        <tr><td><strong style="color:#fff">Fumo</strong> (80% dos pacientes)</td><td>Altera o DNA das células epiteliais. Fumante → maior risco de segundo tumor primário (não apenas recorrência).</td></tr>
+        <tr><td><strong style="color:#fff">Álcool</strong></td><td>Abre caminho para o cigarro + produz acetaldeído carcinogênico + risco multiplicado quando associado ao tabaco.</td></tr>
+        <tr><td><strong style="color:#fff">Radiação UV</strong></td><td>Quebra o DNA + diminui a imunidade + aumenta risco de queilite actínica e CEC de lábio.</td></tr>
+        <tr><td><strong style="color:#fff">HPV</strong></td><td>Infecta epitélio → desliga os "freios" do ciclo celular (p53/Rb) → proliferação descontrolada. Mais relacionado a orofaringe e amígdala, principalmente em jovens.</td></tr>
+        <tr><td><strong style="color:#fff">Outros</strong></td><td>Sífilis · mascar betel · fumar invertido (palato duro) · cachimbo/charuto (piores) · desnutrição · anemia por deficiência de ferro.</td></tr>
+      </table>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Segundo Tumor Primário</span>
+      Pacientes já tratados por câncer bucal têm risco <strong>2 a 6x maior</strong> de desenvolver um segundo tumor primário.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Características Clínicas por Localização</div>
+    <div class="card">
+      <div class="card-title">Perfil Epidemiológico</div>
+      <p>Masculino &gt;40 anos, tabagista, etilista, com exposição solar. Incomum em adultos jovens. Locais principais: <strong style="color:#fff">borda lateral de língua e assoalho bucal</strong>, lábio inferior, palato mole, gengiva, mucosa jugal.</p>
+    </div>
+    <div class="grid3" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">No Lábio</div>
+        <ul>
+          <li>Evolução mais lenta que o intraoral</li>
+          <li>90% no lábio inferior</li>
+          <li>Drenagem linfática menos eficiente → metástases mais tardias</li>
+          <li>Ulceração endurecida, rígida, exsudativa, com crosta</li>
+          <li>Diagnóstico precoce melhora o prognóstico</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Na Língua</div>
+        <ul>
+          <li>Úlcera endurecida e indolor</li>
+          <li>Borda lateral = região mais acometida</li>
+          <li>Comprometimento funcional progressivo (falar, engolir, movimentar)</li>
+          <li>Especialmente grave próximo à orofaringe</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">No Assoalho Bucal</div>
+        <ul>
+          <li>Pode surgir de eritroplasia ou leucoplasia prévias</li>
+          <li>Maior risco de metástase linfonodal pela rica vascularização local</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Metástase e Tratamento</div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Metástase Linfonodal</div>
+        <ul>
+          <li>Vasos linfáticos → linfonodos cervicais</li>
+          <li>Linfonodo metastático: endurecido, indolor e aumentado</li>
+          <li>Disseminação extracapsular = prognóstico desfavorável</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Efeitos Colaterais da Radio/Quimio</div>
+        <ul>
+          <li>Dermatite</li>
+          <li>Mucosite</li>
+          <li>Candidose</li>
+          <li>Xerostomia</li>
+          <li>Cárie de radiação</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Papel do Cirurgião-Dentista</span>
+      <strong>Prevenção · diagnóstico precoce · tratamento · proservação.</strong>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Câncer Bucal</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>90%</b> dos cânceres bucais = CEC</span>
+      <span class="flash-item"><b>CEC</b> = célula da camada espinhosa</span>
+      <span class="flash-item"><b>50%</b> morrem · 50% detectados em T3/T4</span>
+      <span class="flash-item"><b>Brasil</b> = 6º lugar (homens) · maior CEC da América Latina</span>
+      <span class="flash-item"><b>80%</b> dos pacientes são fumantes</span>
+      <span class="flash-item"><b>Álcool</b> = acetaldeído carcinogênico</span>
+      <span class="flash-item"><b>HPV</b> = desliga p53/Rb → orofaringe/amígdala</span>
+      <span class="flash-item"><b>Sinal clínico</b> = úlcera que não cicatriza, bordas elevadas, indolor</span>
+      <span class="flash-item"><b>Local</b> = borda lateral da língua e assoalho</span>
+      <span class="flash-item"><b>Lábio</b> = metástase mais tardia (drenagem menor)</span>
+      <span class="flash-item"><b>Linfonodo metastático</b> = duro, fixo, indolor</span>
+      <span class="flash-item"><b>Radio/quimio</b> = xerostomia, mucosite, cárie de radiação</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══════════════════ CAP 4 — DOENÇAS AUTOIMUNES ══ -->
+<div id="cap4" class="chapter-block">
+  <div class="chapter-header">
+    <span class="chapter-dot" style="background:var(--cap4)"></span>
+    <div>
+      <div class="chapter-num">Capítulo 04</div>
+      <div class="chapter-title" style="color:var(--cap4)">Doenças Autoimunes</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Conceitos Gerais</div>
+    <div class="card">
+      <div class="card-title">Doença Imunológica</div>
+      <p>O corpo entende que uma estrutura normal é um problema, atacando-a e gerando dano tecidual. Uma das consequências é a <strong style="color:#fff">resposta inflamatória</strong>.</p>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Autotolerância</div>
+      <p>Não atacar os próprios antígenos. Quando falha, o sistema imune passa a atacar antígenos do próprio corpo. Nas doenças autoimunes, interrompe-se o estado não-responsivo a autoantígenos.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-label">💡 Requisitos para Lesão Autoimune</span>
+      1) Lesão autoimune primária · 2) Ausência de outra causa. Há variabilidade nas respostas — inúmeras formas de a tolerância ser contornada. Outros exemplos: <strong>Lúpus, Artrite Reumatoide</strong> (inflamação aguda, retração e fibrose das articulações).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Pênfigo Vulgar</div>
+    <div class="card">
+      <div class="card-title">Definição e Epidemiologia</div>
+      <p>Doença mucocutânea autoimune que forma <strong style="color:#fff">bolhas suprabasal e intraepitelial</strong>. Variante mais comum, incidência de 0,2 a 3,2 casos/100.000 habitantes/ano. Mais comum em idosos (5ª-6ª décadas), mulheres brancas acima de 50 anos — há fator emocional atrelado (pode surgir após evento traumático). Predileção em mediterrâneos e judeus.</p>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Clínico</div>
+      <p>Cavidade bucal: 25-90% dos casos. Locais: <strong style="color:#fff">palato mole, mucosa jugal, lábios, língua e gengiva</strong>. Úlceras grandes, extremamente dolorosas, formato irregular, recobertas por pseudomembrana. Bolhas intrabucais são raramente vistas; acometimento gengival extenso e generalizado é frequente.</p>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Patogênese</div>
+      <p>Autoanticorpos IgG contra <strong style="color:#fff">desmogleína 3</strong> (proteína dos desmossomos) → perda de adesão intercelular (<strong style="color:#fff">acantólise</strong>) → células ficam presas apenas pelos hemidesmossomos (<strong style="color:#fff">"células tombstone"</strong>) → formação de bolha intraepitelial.</p>
+    </div>
+    <div class="macete">
+      <span class="macete-label">🧠 Desmossomos × Hemidesmossomos</span>
+      <strong>Desmossomos</strong> = unem célula à célula. <strong>Hemidesmossomos</strong> = unem células à membrana basal. No pênfigo, o IgG mata os desmossomos (desmogleína 3) → acantólise → tombstone.
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Diagnóstico e Tratamento</div>
+        <ul>
+          <li><strong style="color:#fff">Sinal de Nikolsky positivo</strong> (pressão com cabo do espelho → forma bolha ou desloca epitélio)</li>
+          <li>Imunofluorescência: <strong style="color:#fff">padrão de rede de pesca</strong></li>
+          <li>Tratamento: corticoterapia (prednisona) + imunossupressores (azatioprina) + terapia periodontal</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Histopatologia</div>
+        <ul>
+          <li>Biópsia de área <em>próxima</em> à lesão</li>
+          <li>Bolha intraepitelial com membrana basal aderida ao conjuntivo</li>
+          <li>Infiltrado inflamatório crônico discreto</li>
+          <li>Células basais presas somente na lâmina basal (tombstone)</li>
+          <li>Células acantolíticas = <strong style="color:#fff">células de Tzanck</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Penfigóide das Membranas Mucosas</div>
+    <div class="card">
+      <div class="card-title">Definição e Epidemiologia</div>
+      <p>Doença mucocutânea autoimune que forma <strong style="color:#fff">bolhas subepiteliais</strong>. Preferência por mulheres, idosos na 6ª década. Afeta primariamente mucosas: boca (gengivite descamativa), orofaringe, esôfago, laringe, conjuntiva, nariz e genitália.</p>
+    </div>
+    <div class="important" style="margin-top:10px">
+      <strong>80%</strong> com envolvimento ocular — <strong>15%</strong> evoluem para cegueira. Simbléfaro: adesão da pálpebra. Entrópio: eversão da pálpebra. O processo de cicatrização resulta progressivamente no fechamento da pálpebra.
+    </div>
+    <div class="card" style="margin-top:10px">
+      <div class="card-title">Patogênese</div>
+      <p>Autoanticorpos IgG contra <strong style="color:#fff">hemidesmossomos</strong> → bolha abaixo do epitélio. <strong style="color:#fff">Não há acantólise nem tombstone.</strong></p>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <div class="card-title">Diagnóstico e Tratamento</div>
+        <ul>
+          <li>Sinal de Nikolsky positivo</li>
+          <li>Imunofluorescência: <strong style="color:#fff">padrão em linha</strong> (ataca apenas hemidesmossomos)</li>
+          <li>Tratamento: corticoterapia (prednisona) + imunossupressores (azatioprina) + terapia periodontal</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Histopatologia</div>
+        <ul>
+          <li>Bolha subepitelial com separação ao nível da membrana basal</li>
+          <li>Infiltrado inflamatório crônico + <strong style="color:#fff">eosinófilos</strong></li>
+          <li>Separação completa de derme e epiderme</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Pênfigo × Penfigóide — Comparação</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Característica</th><th style="color:var(--accent3)">Pênfigo Vulgar</th><th style="color:var(--accent1)">Penfigóide</th></tr>
+        <tr><td>Tipo de bolha</td><td>Suprabasal / intraepitelial</td><td>Subepitelial</td></tr>
+        <tr><td>Alvo do anticorpo</td><td>Desmogleína 3 (desmossomos)</td><td>Hemidesmossomos</td></tr>
+        <tr><td>Acantólise</td><td>Sim → células tombstone</td><td>Não</td></tr>
+        <tr><td>Imunofluorescência</td><td>Rede de pesca</td><td>Linha</td></tr>
+        <tr><td>Histologia</td><td>Células de Tzanck · MB aderida ao TC</td><td>Separação MB · eosinófilos</td></tr>
+        <tr><td>Envolvimento ocular</td><td>Raro</td><td>80% (15% cegueira)</td></tr>
+        <tr><td>Sinal de Nikolsky</td><td>Positivo</td><td>Positivo</td></tr>
+        <tr><td>Tratamento</td><td>Prednisona + azatioprina</td><td>Prednisona + azatioprina</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="flash">
+    <span class="flash-label">⚡ Resumo Relâmpago — Doenças Autoimunes</span>
+    <div class="flash-items">
+      <span class="flash-item"><b>Autotolerância falha</b> = doença autoimune</span>
+      <span class="flash-item"><b>Pênfigo</b> = bolha INTRAepitelial (supra basal)</span>
+      <span class="flash-item"><b>Penfigóide</b> = bolha SUBepitelial</span>
+      <span class="flash-item"><b>Pênfigo</b> = IgG mata desmogleína 3 → acantólise → tombstone</span>
+      <span class="flash-item"><b>Penfigóide</b> = IgG mata hemidesmossomos</span>
+      <span class="flash-item"><b>Pênfigo</b> = imunofluorescência em rede de pesca</span>
+      <span class="flash-item"><b>Penfigóide</b> = imunofluorescência em linha</span>
+      <span class="flash-item"><b>Células de Tzanck</b> = pênfigo</span>
+      <span class="flash-item"><b>Penfigóide</b> = eosinófilos na histologia</span>
+      <span class="flash-item"><b>Olho</b> = 80% penfigóide · 15% cegueira</span>
+      <span class="flash-item"><b>Sinal de Nikolsky</b> = ambos</span>
+      <span class="flash-item"><b>Tratamento</b> = prednisona + azatioprina (ambos)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding: 48px 0 32px; color:var(--muted); font-size:12px; font-family:'DM Mono',monospace; letter-spacing:1px; border-top:1px solid var(--border); margin-top:40px;">
+  PATOLOGIA ORAL · ODONTOLOGIA · BOA PROVA! 🦷
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
